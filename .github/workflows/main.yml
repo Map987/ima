@@ -36,6 +36,7 @@ jobs:
           git config --local user.name $GIT_NAME
           git config --local user.email $GIT_EMAIL
           git pull
+          git push origin master
           
           git reset --mixed master
           git add .

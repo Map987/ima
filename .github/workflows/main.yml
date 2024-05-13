@@ -26,8 +26,11 @@ jobs:
           pip3 install requests beautifulsoup4 lxml
       - name: Run
         run: python3 ./script.py
-
+      - name: Check for changes
+        id: changes
+        run: echo ::set-output name=changed::$(git status --porcelain)
       - name: Commit
+        if: steps.changes.outputs.changed != ''
         env:
           GIT_NAME: GitHub Actions[Bot]
           GIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
